@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<button onclick="sendmsg()">sendmsg</button>
+		<button onclick="closeWs()">close</button>
+		
+	</body>
+</html>
+<script>
+	const  ws = new WebSocket("ws://localhost:8080/")
+	ws.onopen=()=>{
+		console.log("与服务器连接")
+	}
+	ws.onmessage=(msg)=>{
+	  // console.log(msg)
+	  alert(msg.data+"鹿晗")
+	}
+	ws.onclose=()=>{
+		console.log("服务端关闭")
+	}
+	function closeWs(){
+		ws.close()
+	}
+	function sendmsg(){
+		ws.send("我是客户端")
+	}
+</script>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="./socket.io.js"></script>
+	</head>
+	<body>
+		<button onClick="sendMsg()">sendMsg</button>
+	</body>
+</html>
+<script>
+	var socket = io.connect("http://localhost:8081",()=>{
+		console.log("服务器连接")
+	});
+	//hehe:创建前端的socket事件。
+	socket.on("hehe",function(msg){
+		console.log(msg)
+	} )
+	socket.on("reword",function(msg){
+		Alert(msg)
+	})
+	function sendMsg(){
+		socket.emit("bckApi","我来也")
+	}
+</script>
